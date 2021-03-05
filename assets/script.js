@@ -74,6 +74,8 @@ $("#clear-cities").on("click",function(){
 })
 
 function citySearchHistory() {
+
+    $(".city-history").empty();
     for (let i = 0; i < cities.length; i++) {
         let cityCard = $("<div>").attr("class", "card");
         let cityCardBody = $("<div>").attr("class", "card-body city").text(cities[i]);
