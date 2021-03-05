@@ -5,3 +5,8 @@ body {
 .city-search{
     background-color: black;
 }
+
+.fiveDayCards{
+    flex-wrap: wrap;
+    flex-direction: column;
+}
