@@ -3,6 +3,8 @@ console.log("hello world")
 //citie array that stores the searches to local storage
 var cities = [];
 
+init();
+
 function getWeatherAPI(city){
     var weatherKey = "d74d088f598680d72abe0ce2c850d1b5";
     var apiQuery = `https://api.openweathermap.org/data/2.5/weather?q=${city},us&units=imperial&appid=${weatherKey}`;
@@ -70,7 +72,16 @@ $("#find-city").on("click", function(event) {
 })
 
 $("#clear-cities").on("click",function(){
+    cities = [];
+    localStorage.setItem("cities", JSON.stringify(cities));
+    citySearchHistory();
+})
 
+$(".city-history").on("click", function(event){
+    event.preventDefault();
+    let searchCity = $(this).text();
+    getWeatherAPI(searchCity);
+    console.log(searchCity)
 })
 
 function citySearchHistory() {
@@ -82,4 +93,13 @@ function citySearchHistory() {
         cityCard.append(cityCardBody);
         $(".city-history").prepend(cityCard)
     }
+}
+
+function init(){
+    let citiesLocalStorage = JSON.parse(localStorage.getItem("cities"));
+
+    if(citiesLocalStorage !== null){
+        cities = citiesLocalStorage
+    }
+    citySearchHistory()
 }
