@@ -5,7 +5,7 @@ A web application written in javascript and html that uses the weather api to ge
 
 ## Demonstration:
 
-<img src="" alt = "demonstration" style="width: 80%;">
+<img src="https://github.com/nolanstucky/Weather-App/blob/main/assets/images/demonstration.JPG" alt = "demonstration" style="width: 80%;">
 
 ## Deployed Link:
 https://nolanstucky.github.io/Weather-App/
