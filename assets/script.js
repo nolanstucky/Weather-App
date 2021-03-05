@@ -15,7 +15,19 @@ function getWeatherAPI(city){
     $.ajax({
         url: apiQuery,
         method: "GET"
-    }).then(function(response) {
-        console.log(response)
+    }).then(function(data) {
+        console.log(data)
+        let cityName = data.name;
+        let cityTemperature = data.main.temp;
+        let cityHumidity = data.main.humidity;
+        let cityWindSpeed = data.wind.speed;
+        let cityUvIndex 
+        let cityDate = moment().format('L')
+        let cityWeatherIcon = data.weather[0].icon;
+        
+        $("#cityTemp").text(cityTemperature);
+        console.log(cityTemperature)
+        console.log(cityDate)
+        
     })
 }
