@@ -58,9 +58,26 @@ function getWeatherAPI(city){
         }
     })
 }
-
+//button on click for form field that takes user input to populate the cards with weather data
 $("#find-city").on("click", function(event) {
     event.preventDefault();
     let userCity = $("#city-input").val();
     getWeatherAPI(userCity);
+    cities.push(userCity);
+    localStorage.setItem("cities", JSON.stringify(cities));
+    console.log(cities)
+    citySearchHistory()
 })
+
+$("#clear-cities").on("click",function(){
+
+})
+
+function citySearchHistory() {
+    for (let i = 0; i < cities.length; i++) {
+        let cityCard = $("<div>").attr("class", "card");
+        let cityCardBody = $("<div>").attr("class", "card-body city").text(cities[i]);
+        cityCard.append(cityCardBody);
+        $(".city-history").prepend(cityCard)
+    }
+}
