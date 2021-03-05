@@ -24,8 +24,12 @@ function getWeatherAPI(city){
         let cityUvIndex 
         let cityDate = moment().format('L')
         let cityWeatherIcon = data.weather[0].icon;
+        let cityIcon = $("<img>").attr("src", `https://openweathermap.org/img/w/${cityWeatherIcon}.png`)
         
         $("#cityTemp").text(cityTemperature);
+        $("#cityHumid").text(cityHumidity);
+        $("#cityWind").text(cityWindSpeed)
+        $("#cityName").text(cityName + " " + cityDate).append(cityIcon)
         console.log(cityTemperature)
         console.log(cityDate)
         
