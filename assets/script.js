@@ -3,11 +3,6 @@ console.log("hello world")
 //citie array that stores the searches to local storage
 var cities = [];
 
-
-var city = "bothell"
-
-getWeatherAPI(city);
-
 function getWeatherAPI(city){
     var weatherKey = "d74d088f598680d72abe0ce2c850d1b5";
     var apiQuery = `https://api.openweathermap.org/data/2.5/weather?q=${city},us&units=imperial&appid=${weatherKey}`;
@@ -41,5 +36,31 @@ function getWeatherAPI(city){
         method: "GET"
     }).then(function(data){
         console.log(data)
+        
+        for (let i = 0; i < 5; i++) {
+            let cityTemp = data.list[i].main.temp;
+            let cityHumid = data.list[i].main.humidity;
+            let cityIcon = data.list[i].weather[0].icon;
+            let cardDate = data.list[i].dt_txt
+            console.log(cardDate)
+            
+            
+            let cityDiv = $("<div>").attr("class", "card");
+            let cityCardBody = $("<div>").attr("class", "card-body");
+            let cityDate = $("<p>").text(`Date: ${cardDate}°F`)
+            let cityCardTemp = $("<p>").text(`Tempature: ${cityTemp}`)
+            let cityCardHumid = $("<p>").text(`Humidity: ${cityHumid}%`)
+            let cityCardIcon = $("<img>").attr("src", `https://openweathermap.org/img/w/${cityIcon}.png`)
+            cityDiv.append(cityCardBody);
+            cityCardBody.append(cityDate, cityCardIcon, cityCardTemp, cityCardHumid);
+            $(".fiveDayCards").append(cityDiv)
+
+        }
     })
 }
+
+$("#find-city").on("click", function(event) {
+    event.preventDefault();
+    let userCity = $("#city-input").val();
+    getWeatherAPI(userCity);
+})
