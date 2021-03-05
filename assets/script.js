@@ -77,7 +77,7 @@ $("#clear-cities").on("click",function(){
     citySearchHistory();
 })
 
-$(".city-history").on("click", function(event){
+$(".city-history").on("click", ".city", function(event){
     event.preventDefault();
     let searchCity = $(this).text();
     getWeatherAPI(searchCity);
