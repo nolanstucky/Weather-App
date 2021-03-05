@@ -19,7 +19,7 @@ function getWeatherAPI(city){
         let cityTemperature = data.main.temp;
         let cityHumidity = data.main.humidity;
         let cityWindSpeed = data.wind.speed;
-        let cityUvIndex 
+        
         let cityDate = moment().format('L')
         let cityWeatherIcon = data.weather[0].icon;
         let cityIcon = $("<img>").attr("src", `https://openweathermap.org/img/w/${cityWeatherIcon}.png`)
@@ -38,8 +38,8 @@ function getWeatherAPI(city){
         method: "GET"
     }).then(function(data){
         console.log(data)
-        
-        for (let i = 0; i < 5; i++) {
+        $(".fiveDayCards").empty();
+        for (let i = 2; i < 40; i += 4) {
             let cityTemp = data.list[i].main.temp;
             let cityHumid = data.list[i].main.humidity;
             let cityIcon = data.list[i].weather[0].icon;
